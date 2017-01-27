@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Overpass:100,400,600,700" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+<link href="assets/css/foundation.css" rel="stylesheet" />
+<link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+<link href="assets/css/demo.css" rel="stylesheet" />
+<link href="package/assets/css/showoff.css" rel="stylesheet" />
+
+
+</head>
+<body>
+<div class = "row">
+	<div class = "columns medium-10 medium-centered">
+	<div id = "content">
+		<div class ="gshowoff" id = "gshowoff_wrapper">
+			<ul>
+				
+			</ul>
+		</div>
+	</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function load(data) {
+		var reposList = document.getElementById('gshowoff_wrapper');
+		var output = ""
+		var repos = data.data
+		for (var key in repos) {
+			console.log(repos[key])
+			var current_repo = repos[key]
+			var title = current_repo["name"]
+			var description = current_repo["description"]
+			var language = current_repo["language"]
+			var stars = current_repo["stargazers_count"]
+			var watchers = current_repo["watchers"]
+			var forks = current_repo["forks"]
+
+			output += '<li><a href="#">'
+			output += '<h3>'+ title +'</h3>'
+			if ( language !== null || stars !== 0 || watchers !== 0  ) { 
+				output += '<div class = "repos_info">'
+				if ( language !== null ) { 
+					output += '<span class = "language">'+ language +'</span>'
+				}
+
+				if ( stars !== 0 ) {
+					output += '<span><i class="fa fa-star"></i>' + stars + '</span>'
+				}
+
+				if ( watchers !== 0 ) {
+					output += '<span><i class="fa fa-eye"></i>' + watchers + '</span>'
+				}
+				if ( forks !== 0 ) {
+					output += '<span><i class="fa fa-code-fork"></i>' + forks + '</span>'
+				}
+				output += '</div>'
+			}
+			if ( description !== null ) { 
+				output += '<p>'+ description +'</p>'
+			}
+
+			output += '</a></li>'
+		}
+		reposList.querySelector('ul').innerHTML = output
+		
+	}
+</script>
+<script src="https://api.github.com/users/prevwong/repos?callback=load&&access_token=59a024bd2cfecf29d047803886965e52026b267e" type="text/javascript"></script>
+<script src=""
+</body>
+</html>
