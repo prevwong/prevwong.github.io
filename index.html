@@ -15,60 +15,29 @@
 <div class = "row">
 	<div class = "columns medium-10 medium-centered">
 	<div id = "content">
-		<div class ="gshowoff" id = "gshowoff_wrapper">
-			<ul>
-				
-			</ul>
+		<div class="gshowoff" id="gshowoff_wrapper">
+			<header>
+				<div class = "user_bio">
+				<span class="avatar"></span>
+				<span class="name">Prev Wong</span>
+				</div>
+				<div class="user_links">
+					<ul>
+						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="#"><i class="fa fa-globe"></i></a></li>
+					</ul>
+				</div>
+			</header>
+			<ul><li class="top"><a href="#"><h3>awesome-select</h3><div class="repos_info"><span class="language">JavaScript</span><span><i class="fa fa-star"></i>20</span><span><i class="fa fa-eye"></i>20</span><span><i class="fa fa-code-fork"></i>3</span></div><p>⚡️ Jquery Dropdown Plugin inspired by the actual dropdown animations in Material Design</p></a></li><li><a href="#"><i class="fork_repo fa fa-code-fork"></i><h3>datasciencecoursera</h3><p>Peer evaluation for Data Science Toolbox</p></a></li><li><a href="#"><h3>ml-adventures</h3><div class="repos_info"><span class="language">Python</span></div><p>Diving into Machine Learning</p><i class="arrow fa fa-long-arrow-right"></i></a></li><li><a href="#"><h3>prevwong.github.io</h3><div class="repos_info"><span class="language">JavaScript</span><span><i class="fa fa-star"></i>1</span><span><i class="fa fa-eye"></i>1</span></div></a></li></ul>
+			<footer>
+				<a target="_blank" href="https://github.com/prevwong/awesome-select/" class="coffee button">
+                            <div class="bg"></div>
+                            <div class="content">Visit profile</div> <i class="icon fa fa-github"></i></a>
+			</footer>
 		</div>
 	</div>
 	</div>
 </div>
-<script type="text/javascript">
-	function load(data) {
-		var reposList = document.getElementById('gshowoff_wrapper');
-		var output = ""
-		var repos = data.data
-		for (var key in repos) {
-			console.log(repos[key])
-			var current_repo = repos[key]
-			var title = current_repo["name"]
-			var description = current_repo["description"]
-			var language = current_repo["language"]
-			var stars = current_repo["stargazers_count"]
-			var watchers = current_repo["watchers"]
-			var forks = current_repo["forks"]
-
-			output += '<li><a href="#">'
-			output += '<h3>'+ title +'</h3>'
-			if ( language !== null || stars !== 0 || watchers !== 0  ) { 
-				output += '<div class = "repos_info">'
-				if ( language !== null ) { 
-					output += '<span class = "language">'+ language +'</span>'
-				}
-
-				if ( stars !== 0 ) {
-					output += '<span><i class="fa fa-star"></i>' + stars + '</span>'
-				}
-
-				if ( watchers !== 0 ) {
-					output += '<span><i class="fa fa-eye"></i>' + watchers + '</span>'
-				}
-				if ( forks !== 0 ) {
-					output += '<span><i class="fa fa-code-fork"></i>' + forks + '</span>'
-				}
-				output += '</div>'
-			}
-			if ( description !== null ) { 
-				output += '<p>'+ description +'</p>'
-			}
-
-			output += '</a></li>'
-		}
-		reposList.querySelector('ul').innerHTML = output
-		
-	}
-</script>
-<script src="https://api.github.com/users/prevwong/repos?callback=load&&access_token=59a024bd2cfecf29d047803886965e52026b267e" type="text/javascript"></script>
-<script src=""
 </body>
 </html>
