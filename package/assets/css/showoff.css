@@ -1,3 +1,8 @@
+#content {
+  float: left;
+  width: 100%;
+  padding: 100px 0; }
+
 .gshowoff {
   float: left;
   width: 100%;
@@ -15,7 +20,8 @@
         float: left;
         border-radius: 100%;
         background: #eee;
-        margin-right: 20px; }
+        margin-right: 20px;
+        background-size: contain; }
       .gshowoff header .user_bio .name {
         float: left;
         font-size: 20px;
@@ -38,8 +44,10 @@
             border-radius: 100%;
             position: relative;
             padding: 3px 0;
+            opacity: 0.7;
             transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
             .gshowoff header .user_links ul li a:hover {
+              opacity: 1;
               background: #eee; }
   .gshowoff > ul {
     margin: 0;
@@ -78,6 +86,10 @@
           float: left;
           width: 100%;
           color: #868686; }
+        .gshowoff > ul li a .repo_content {
+          position: relative;
+          left: 0;
+          transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
         .gshowoff > ul li a .arrow {
           position: absolute;
           right: 20px;
@@ -109,6 +121,8 @@
           .gshowoff > ul li a:hover .arrow {
             opacity: 0.3;
             right: 35px; }
+          .gshowoff > ul li a:hover .repo_content {
+            left: -10px; }
           .gshowoff > ul li a:hover .repos_info > span {
             color: #5594d6; }
             .gshowoff > ul li a:hover .repos_info > span.language {

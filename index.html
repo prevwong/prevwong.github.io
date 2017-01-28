@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Prev's respositories</title>
 <link href="https://fonts.googleapis.com/css?family=Overpass:100,400,600,700" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-<link href="assets/css/foundation.css" rel="stylesheet" />
-<link href="assets/css/font-awesome.min.css" rel="stylesheet" />
-<link href="assets/css/demo.css" rel="stylesheet" />
+<link href="package/assets/css/foundation.css" rel="stylesheet" />
+<link href="package/assets/css/font-awesome.min.css" rel="stylesheet" />
 <link href="package/assets/css/showoff.css" rel="stylesheet" />
 
 
@@ -19,19 +19,19 @@
 			<header>
 				<div class = "user_bio">
 				<span class="avatar"></span>
-				<span class="name">Prev Wong</span>
+				<span class="name"></span>
 				</div>
 				<div class="user_links">
 					<ul>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-						<li><a href="#"><i class="fa fa-globe"></i></a></li>
+						<li><a target="_blank" href="https://twitter.com/prev_wong"><i class="fa fa-twitter"></i></a></li>
+						<li><a target="_blank" href="https://instagram.com/prev_wong"><i class="fa fa-instagram"></i></a></li>
+						<li><a target="_blank" href="https://imprev.co"><i class="fa fa-globe"></i></a></li>
 					</ul>
 				</div>
 			</header>
-			<ul><li class="top"><a href="#"><h3>awesome-select</h3><div class="repos_info"><span class="language">JavaScript</span><span><i class="fa fa-star"></i>20</span><span><i class="fa fa-eye"></i>20</span><span><i class="fa fa-code-fork"></i>3</span></div><p>⚡️ Jquery Dropdown Plugin inspired by the actual dropdown animations in Material Design</p></a></li><li><a href="#"><i class="fork_repo fa fa-code-fork"></i><h3>datasciencecoursera</h3><p>Peer evaluation for Data Science Toolbox</p></a></li><li><a href="#"><h3>ml-adventures</h3><div class="repos_info"><span class="language">Python</span></div><p>Diving into Machine Learning</p><i class="arrow fa fa-long-arrow-right"></i></a></li><li><a href="#"><h3>prevwong.github.io</h3><div class="repos_info"><span class="language">JavaScript</span><span><i class="fa fa-star"></i>1</span><span><i class="fa fa-eye"></i>1</span></div></a></li></ul>
+			<ul></ul>
 			<footer>
-				<a target="_blank" href="https://github.com/prevwong/awesome-select/" class="coffee button">
+				<a target="_blank" href="https://github.com/prevwong/awesome-select/" id = "profile_link" class="coffee button">
                             <div class="bg"></div>
                             <div class="content">Visit profile</div> <i class="icon fa fa-github"></i></a>
 			</footer>
@@ -39,5 +39,79 @@
 	</div>
 	</div>
 </div>
+<script type="text/javascript">
+	function header(data){
+		var user_data= data.data
+		var name = user_data["name"]
+		var bio = user_data["bio"]
+		var avatar_url = user_data['avatar_url']
+		var html_url = user_data["html_url"]
+
+		var avatar_elem = document.querySelector('.gshowoff header .avatar')
+		var name_elem = document.querySelector('.gshowoff header .name')
+		var profile_elem = document.getElementById('profile_link')
+
+		avatar_elem.style.backgroundImage = "url('"+ avatar_url +"')"
+		name_elem.innerHTML = name
+		profile_elem.href = html_url
+
+		
+	}
+	function list(data) {
+		var reposList = document.getElementById('gshowoff_wrapper');
+		var output = ""
+		var repos = data.data
+		for (var key in repos) {
+			var current_repo = repos[key]
+			var url = current_repo["html_url"]
+			var title = current_repo["name"]
+			var description = current_repo["description"]
+			var language = current_repo["language"]
+			var stars = current_repo["stargazers_count"]
+			var watchers = current_repo["watchers"]
+			var is_fork = current_repo["fork"]
+			var forks = current_repo["forks"]
+			var classes = ""
+
+			if ( stars > 15 ) {
+				classes += "top "
+			}
+
+			output += '<li class="'+ classes +'"><a target="__blank" href="'+ url +'"><div class="repo_content">'
+			if ( is_fork == true ) {
+				output += '<i class="fa fa-code-fork fork_repo"></i>'
+			}
+			output += '<h3>'+ title +'</h3>'
+			if ( language !== null || stars !== 0 || watchers !== 0  ) { 
+				output += '<div class = "repos_info">'
+				if ( language !== null ) { 
+					output += '<span class = "language">'+ language +'</span>'
+				}
+
+				if ( stars !== 0 ) {
+					output += '<span><i class="fa fa-star"></i>' + stars + '</span>'
+				}
+
+				if ( watchers !== 0 ) {
+					output += '<span><i class="fa fa-eye"></i>' + watchers + '</span>'
+				}
+				if ( forks !== 0 ) {
+					output += '<span><i class="fa fa-code-fork"></i>' + forks + '</span>'
+				}
+				output += '</div>'
+			}
+			if ( description !== null ) { 
+				output += '<p>'+ description +'</p>'
+			}
+
+			output += '</div><i class="fa fa-long-arrow-right arrow"></i></a></li>'
+		}
+		document.querySelector('.gshowoff > ul').innerHTML = output
+		
+	}
+</script>
+
+<script src="https://api.github.com/users/prevwong/repos?callback=list&&access_token=59a024bd2cfecf29d047803886965e52026b267e" type="text/javascript"></script>
+<script src="https://api.github.com/users/prevwong?callback=header" type="text/javascript"></script>
 </body>
 </html>

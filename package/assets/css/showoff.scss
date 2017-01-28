@@ -1,3 +1,8 @@
+#content {
+  float: left;
+  width: 100%;
+  padding: 100px 0; }
+  
 @mixin transition {
 	transition: .4s cubic-bezier(.19,1,.22,1);
 }
@@ -19,6 +24,7 @@
 				border-radius:100%;
 				background:#eee;
 				margin-right:20px;
+				background-size:contain;
 			}
 			.name {
 				float:left;
@@ -44,8 +50,10 @@
 					    border-radius: 100%;
 					    position:relative;
 					    padding:3px 0;
+					    opacity:0.7;
 					    @include transition;
 					    &:hover {
+					    	opacity:1;
 					    	background:#eee;
 					    }
 
@@ -102,6 +110,11 @@
 					width:100%;
 					color:#868686
 				}
+				.repo_content {
+					position:relative;
+					left:0;
+					@include transition;
+				}
 				.arrow {
 					position: absolute;
 				    right: 20px;
@@ -139,6 +152,9 @@
 					.arrow {
 						opacity:0.3;
 						right:35px;
+					}
+					.repo_content {
+						left:-10px;
 					}
 					.repos_info {
 						> span {
